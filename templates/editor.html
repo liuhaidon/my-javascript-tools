@@ -1,19 +1,42 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
-	<body>
-		<div class="box_conter redis_config_page">
-            <div class="soft-man-con bt-form">
-                <p style="color: #666; margin-bottom: 7px">提示：Ctrl+F 搜索关键字，Ctrl+G 查找下一个，Ctrl+S 保存，Ctrl+Shift+R 查找替换!</p>
-                <textarea class="bt-input-text" style="height: 320px; line-height: 18px; display: none;" id="textBody"></textarea>
-                <button id="save_config" class="btn btn-success btn-sm" style="margin-top:20px;">保存</button>
-                <ul class="help-info-text c7">
-                	<li>此处为supervisor主配置文件,若您不了解配置规则,请勿随意修改。</li>
-                </ul>
-            </div>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		.CodeMirror { 
+			/* Set height, width, borders, and global font properties here */ 
+		    font-family: monospace; 
+		    height: 300px; 
+		} 
+	</style>
+	<script src="{{ static_url('backend/jquery.dataTables.js') }}"></script>
+</head>
+<body>
+	<div class="box_conter redis_config_page">
+        <div class="soft-man-con bt-form">
+            <p style="color: #666; margin-bottom: 7px">提示：Ctrl+F 搜索关键字，Ctrl+G 查找下一个，Ctrl+S 保存，Ctrl+Shift+R 查找替换!</p>
+            <textarea class="bt-input-text" style="height: 320px; line-height: 18px; display: none;" id="textBody"></textarea>
+            <button id="save_config" class="btn btn-success btn-sm" style="margin-top:20px;">保存</button>
+            <ul class="help-info-text c7">
+            	<li>此处为supervisor主配置文件,若您不了解配置规则,请勿随意修改。</li>
+            </ul>
         </div>
-	</body>
+    </div>
+    
+    <script>
+    	$('.CodeMirror').remove();
+        _this.edit_codeMirror = CodeMirror.fromTextArea(document.getElementById("textBody"), {
+            extraKeys: { "Ctrl-Space": "autocomplete" },
+            lineNumbers: true,
+            matchBrackets: true,
+        });
+        _this.edit_codeMirror.setSize("100%",420); 
+        console.log(_this.edit_codeMirror)
+        $('#save_config').click(function(){
+            var data = _this.edit_codeMirror.getValue();
+            _this.save_supervisor_file_req({data:data,path:'/etc/supervisor/supervisord.conf'});
+        });
+    </script>
+</body>
 </html>
