@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
-	<body>
-		<form action="javascript:;" method="post" name="login_form" id="login_form">
-			<label>省份：</label>
-            <select class="form-control" id="province" name="province">
-                <option value=''>请选择省份或直辖市</option>
-            </select>
-            <p class="showInfo"></p>
-
-            <label>城市：</label>
-            <select class="form-control" id="city" name="city">
-                <option value=''>请选择城市</option>
-            </select>
-            <p class="showInfo"></p>
-            
-			<select style="width:195px" name="role" id="role" onfocus="this.defaultIndex=this.selectedIndex;"
-	onchange="this.selectedIndex=this.defaultIndex;">
-			<select style="width:195px" name="role" id="role" disabled="disabled">
-		</form>
-	</body>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<form action="javascript:;" method="post" name="login_form" id="login_form">
+		<label>省份：</label>
+        <select class="form-control" id="province" name="province" οnchange="showCity(this)">
+            <option value=''>请选择省份或直辖市</option>
+        </select>&nbsp;&nbsp;
+        <!--<p class="showInfo"></p>-->
+        <label>城市：</label>
+        <select class="form-control" id="city" name="city" οnchange="showCountry(this)">
+            <option value=''>请选择城市</option>
+        </select>&nbsp;&nbsp;
+        <!--<p class="showInfo"></p>-->
+        <label>县区：</label>
+        <select class="form-control" id="area" name="area" οnchange="selecCountry(this)">
+            <option>=请选择县区=</option>
+        </select>&nbsp;&nbsp;
+        <!--<p class="showInfo"></p>-->
+        
+		<select style="width:195px" name="role" id="role" onfocus="this.defaultIndex=this.selectedIndex;"
+onchange="this.selectedIndex=this.defaultIndex;">
+		<select style="width:195px" name="role" id="role" disabled="disabled">
+	</form>
+	
+	<script>
+	</script>
+</body>
+<script src="../static/js/address/city.js"></script>
+<script src="../static/js/address/city_handle.js"></script>
+<script src="../static/js/jquery-3.3.1.min.js"></script>
 </html>
