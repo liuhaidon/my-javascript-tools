@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="layer.js"></script>
+</head>
+<body>
+	<button οnclick="methon('123')">点我测试</button>
+	<script type="text/javascript">
+        function methon(num){
+            alert("单个参数:"+num);
+        }
+ 	</script>
+
+ 	<script>
+ 		layer.open({
+            type: 1,
+            area:"400px",
+            title: '导入规则',
+            closeBtn: 2,
+            shift: 5,
+            shadeClose: false,
+            btn:['导入','取消'],
+            content:'<div class="bt-form bt-form" style="padding:15px 0px">\
+						<div class="line" style="text-align: center;">\
+                            <div class="info-r c4" style="margin-left:100px;">\
+                                <div class="detect_input">\
+                                    <input type="text" class="input_file" placeholder="请选择文件" style="width:137px;">\
+                                    <input type="file" class="file_input" name="点我上传" id="fileInput" style="display:none;"/>\
+                                    <button type="button" class="select_file" onclick="$(\'#fileInput\').click()">选择文件</button>\
+                                </div>\
+                            </div>\
+                        </div>\
+					</div>',
+            yes:function(index,layers){
+                if (!$("#fileInput")[0].files[0]){
+                    layer.msg('请选择要导入的文件!',{icon:2});
+                    return false;
+                }
+                _this.upload({name:name, _fd:$("#fileInput")[0].files[0]}, 0, index);
+            },
+            success:function(){
+                $("#fileInput").on('change',function(){
+                    if(!$("#fileInput")[0].files[0]){
+                        $(".input_file").val("");
+                    }
+                    var filename = $("#fileInput")[0].files[0].name;
+                    $(".input_file").val(filename)
+                });
+            },
+        });
+ 	</script>
+ 	<!--https://www.w3school.com.cn/jsref/event_button.asp-->
+</body>
+</html>
