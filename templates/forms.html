@@ -7,7 +7,14 @@
 <body>
 	<form action="javascript:;" method="post" name="login_form" id="login_form">
 		
-		
+		<!--<div class="detect_input">-->
+			<label>头像：</label>
+            <input type="text" class="input_file" placeholder="请选择文件" style="width:137px;">
+            <input type="file" class="file_input" name="点我上传" id="fileInput" style="display:none;"/>
+            <button type="button" class="select_file" onclick="$(\'#fileInput\').click()">选择文件</button>
+ <!--       </div>-->
+        <p class="showInfo"></p>
+
 		<label>省份：</label>
         <select class="form-control" id="province" name="province" οnchange="showCity(this)">
             <option value=''>请选择省份或直辖市</option>
@@ -30,6 +37,12 @@ onchange="this.selectedIndex=this.defaultIndex;">
 	</form>
 	
 	<script>
+		// ajax:方法一
+		$.post('/plugin?action=a&name=task_manager&s=set_runlevel_state',{runlevel:runlevel,serviceName:serviceName},function(rdata){
+			layer.close(loadT);
+			layer.msg(rdata.msg,{icon:rdata.status?1:2});
+			if(rdata.status) get_service_list();
+		});
 	</script>
 </body>
 <script src="../static/js/address/city.js"></script>
