@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		.search-input button {
+			display: inline-block;
+			height: 30px;
+			line-height: 30px;
+			background: #20a53a;
+			vertical-align: top;
+			color: #fff;
+			border: none;
+			width: 35px;
+			text-align: center;
+			border-top-right-radius: 2px;
+			border-bottom-right-radius: 2px;
+			cursor: pointer;
+			outline: none;
+			font-size: 16px;
+		}
+		.search-input button span {
+			position: relative;
+			top: 2px;
+		}
+		.search-input button span {
+		    position: relative;
+		    top: 2px;
+		}
+		.glyphicon {
+		    position: relative;
+		    top: 1px;
+		    display: inline-block;
+		    font-family: 'Glyphicons Halflings';
+		    font-style: normal;
+		    font-weight: 400;
+		    line-height: 1;
+		    -webkit-font-smoothing: antialiased;
+		    -moz-osx-font-smoothing: grayscale;
+		}
+	</style>
+</head>
+<body>
+	<div class="search-input">
+		<input type="text" class="search_name_val" placeholder="请输入查询名称"/>
+		<button type="submit" class="search_name_btn">
+			<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+		</button>
+	</div>
+	
+	<script>
+		$('.search_name_val').keyup(function (e) {
+            if (e.keyCode == 13) {
+                alert("回车")
+            }
+        });
+	</script>
+</body>
+<script src="../static/js/jquery-3.3.1.min.js"></script>
+</html>
