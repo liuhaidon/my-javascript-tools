@@ -5,22 +5,87 @@
 		<title></title>
 	</head>
 	<body>
-		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table table-hover" style="table-layout: fixed;word-wrap:break-word;">
+		<p>
+			<input type="text" id="name" placeholder="姓名">
+			<input type="text" id="chinese" placeholder="语文">
+			<input type="text" id="my_math" placeholder="数学">
+			<input type="text" id="engilsh" placeholder="外语">
+			<button onclick="btnAdd()">添加数据</button>
+		</p>
+		<table width="400" border="1" align="left" cellpadding="10" cellspacing="0"  style="table-layout: fixed;word-wrap:break-word;">
 			<thead>
 			    <tr position: fixed>
-			        <th style="width: 90px">变量名</th>
-			        <th style="width: 200px">变量值</th>
-			        <th style="width: 110px">变量位置</th>
-			        <th style="width: 60px">类型</th>
-			        <th style="width: 45px;text-align: right">操作</th>
+			    	<th style="width: 60px">姓名</th>
+			        <th style="width: 60px">语文</th>
+			        <th style="width: 60px">数学</th>
+			        <th style="width: 60px">外语</th>
+			        <th style="width: 100px;text-align: center">操作</th>
 			    </tr>
 			</thead>
-			<tbody id="environment-table">
+			<tbody bgcolor="green">
 				<tr>
-					<td>+ res[i].key +</td>
-					<td>+ res[i].key +</td>
+					<td>张三丰</td>
+					<td>85</td>
+					<td>86</td>
+					<td>92</td>
+				</tr>
+				<tr>
+					<td>张翠山</td>
+					<td rowspan="2">92</td>
+					<td colspan="2">96</td>
+				</tr>
+				<tr>
+					<td>张无忌</td>
+					<td>87</td>
+					<td>85</td>
 				</tr>
 			</tbody>
+			<tbody id="body"></tbody>
+			<tfoot>
+		        <tr>
+		            <td colspan="5"><button onclick="btnAdd()">添加数据</button></td>
+		        </tr>
+		    </tfoot>
 		</table>
+		<script src="../static/js/jquery-3.3.1.min.js"></script>
+		<script>
+			function btnAdd(){
+				//1、获取三个文本框的值，并创建两个按钮
+				var name = $("#name").val();
+				var chinese = $("#chinese").val();
+				var my_math = $("#my_math").val();
+				var engilsh = $("#engilsh").val();
+				var $btnUpdate=$("<button>修改</button>");
+				var $btnDelete=$("<button>删除</button>");
+				
+				//2、创建四个td，使用上方的值赋值
+				var $tdName = $("<td>"+name+"</td>");
+				var $tdChinese = $("<td>"+chinese+"</td>");
+				var $tdMy_math = $("<td>"+my_math+"</td>");
+				var $tdEnglish = $("<td>"+engilsh+"</td>");
+				var $tdOper = $("<td></td>");
+				$tdOper.append($btnUpdate);
+				$tdOper.append($btnDelete);
+				
+				//3、创建一个tr，追加四个td为子元素
+				var $tr = $("<tr></tr>");
+				$tr.append($tdName);
+				$tr.append($tdChinese);
+				$tr.append($tdMy_math);
+				$tr.append($tdEnglish);
+				$tr.append($tdOper);
+				
+				//4、将tr追加到tbody中
+				$("#body").append($tr);
+				
+				/*为$btnDelete绑定事件*/
+				$btnDelete.click(function(){
+					if(confirm("确认删除吗?")){
+						$(this).parent().parent().remove();
+					}
+				});
+			}
+		</script>
 	</body>
+	
 </html>
